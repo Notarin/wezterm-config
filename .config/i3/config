@@ -56,10 +56,10 @@ bindsym $mod+Shift+f 			exec --no-startup-id thunar
 bindsym $mod+Shift+w 			exec --no-startup-id google-chrome-unstable
 
 # -- Rofi --
-bindsym $alt+F1 			exec --no-startup-id ~/.config/i3/rofi/bin/launcher
+bindsym $mod+d 			    exec --no-startup-id ~/.config/i3/rofi/bin/launcher
 bindsym $mod+n 				exec --no-startup-id ~/.config/i3/rofi/bin/network_menu
 bindsym $mod+x 				exec --no-startup-id ~/.config/i3/rofi/bin/powermenu
-bindsym $mod+d 				exec --no-startup-id ~/.config/i3/rofi/bin/asroot
+bindsym $alt+F1 			exec --no-startup-id ~/.config/i3/rofi/bin/asroot
 
 # -- Function keys --
 bindsym XF86MonBrightnessUp 		exec --no-startup-id "brightness --inc"

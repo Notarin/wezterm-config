@@ -22,8 +22,8 @@ xsetroot -cursor_name left_ptr
 xfce4-power-manager &
 
 # Enable Super Keys For Menu
-ksuperkey -e 'Super_L=Alt_L|F1' &
-ksuperkey -e 'Super_R=Alt_L|F1' &
+#ksuperkey -e 'Super_L=Alt_L|F1' &
+#ksuperkey -e 'Super_R=Alt_L|F1' &
 
 # Restore wallpaper
 nitrogen --restore &
