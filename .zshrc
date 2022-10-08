@@ -48,4 +48,4 @@ alias q="exit"
 # Commands to run at startup.
 neofetch
 echo "Updating dotfiles..."
-( cd ~ ; git pull ) &
+( cd ~ ; git pull )
