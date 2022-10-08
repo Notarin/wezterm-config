@@ -43,6 +43,7 @@ alias calc="eva"
 alias cp="xcp"
 alias kssh="kitty +kitten ssh"
 alias c="clear && ( cd ~ ; source .zshrc )"
+alias q="exit"
 
 # Commands to run at startup.
 neofetch
