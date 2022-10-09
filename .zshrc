@@ -46,6 +46,7 @@ alias c="clear && ( cd ~ ; source .zshrc )"
 alias q="exit"
 
 # Commands to run at startup.
+clear
 neofetch
 echo "Updating dotfiles..."
 ( cd ~ ; git pull )
