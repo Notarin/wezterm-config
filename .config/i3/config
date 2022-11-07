@@ -22,7 +22,7 @@ title_align center
 for_window [class=".*"] border pixel 2
 
 # Gaps (Outer gaps are added to the inner gaps)
-gaps inner 15
+gaps inner 0
 gaps outer 0
 
 # Only enable gaps on a workspace when there is at least one container
