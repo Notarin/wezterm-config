@@ -44,6 +44,7 @@ alias cp="xcp"
 alias kssh="kitty +kitten ssh"
 alias c="clear && ( cd ~ ; source .zshrc )"
 alias q="exit"
+alias wiki="wiki-tui"
 
 # Commands to run at startup.
 clear
