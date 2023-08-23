@@ -64,4 +64,5 @@ if [ -f '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/path.zsh
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/completion.zsh.inc'; fi
 
-
+# Starship Prompt
+eval "$(starship init zsh)"
