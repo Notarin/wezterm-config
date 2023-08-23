@@ -8,7 +8,7 @@ ZSH=/home/$USER/.oh-my-zsh/
 ZSH_THEME="darkblood"
 
 # oh-my-zsh plugins.
-plugins=(zoxide)
+plugins=(zoxide zsh-autosuggestions zsh-syntax-highlighting)
 
 # Make required files/directories if they do not exist.
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
