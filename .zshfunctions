@@ -39,13 +39,23 @@ var() {
 }
 
 nano () {
-  if [ ! -f "${@: -1}" ] || [ -w "${@: -1}" ]; then
-    /bin/nano "$@"
-  else
-   echo "Write permission is NOT granted on ${@: -1}"
-   echo "Escalating privileges..."
-   sudo /bin/nano "$@"
-  fi
+	cowsay "Try nvim instead"
+	print -z "nvim  $*"
+}
+
+vim () {
+	cowsay "Try nvim instead"
+	print -z "nvim  $*"
+}
+
+nvim () {
+	if [ ! -f "${@: -1}" ] || [ -w "${@: -1}" ]; then
+		/usr/bin/nvim "$@"
+	else
+		echo "Write permission is NOT granted on ${@: -1}"
+		echo "Escalating privileges..."
+		sudo /usr/bin/nvim "$@"
+	fi
 }
 
 lad () {
