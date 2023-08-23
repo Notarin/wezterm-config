@@ -8,7 +8,7 @@ ZSH=/home/$USER/.oh-my-zsh/
 ZSH_THEME="darkblood"
 
 # oh-my-zsh plugins.
-plugins=()
+plugins=(zoxide)
 
 # Make required files/directories if they do not exist.
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
@@ -47,6 +47,7 @@ alias q="exit"
 alias wiki="wiki-tui"
 alias pw="packwiz"
 alias fix-arch-keys="sudo pacman -Sy archlinux-keyring && sudo pacman -Su"
+alias cd="z"
 
 # Commands to run at startup.
 clear
