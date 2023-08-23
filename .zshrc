@@ -49,6 +49,9 @@ alias pw="packwiz"
 alias fix-arch-keys="sudo pacman -Sy archlinux-keyring && sudo pacman -Su"
 alias cd="z"
 
+# Fuck support
+eval $(thefuck --alias)
+
 # Commands to run at startup.
 clear
 neofetch
@@ -60,3 +63,5 @@ if [ -f '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/path.zsh
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/completion.zsh.inc'; fi
+
+
