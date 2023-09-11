@@ -49,6 +49,9 @@ alias pw="packwiz"
 alias fix-arch-keys="sudo pacman -Sy archlinux-keyring && sudo pacman -Su"
 alias cd="z"
 
+# Envrionment variables.
+export EDITOR="/usr/bin/nvim"
+
 # Fuck support
 eval $(thefuck --alias)
 
