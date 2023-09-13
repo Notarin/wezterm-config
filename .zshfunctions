@@ -43,7 +43,9 @@ vim () {
 
 nvim () {
   local found=false
-  if [ -f "${1}" ]; then
+  if [ -z "$1" ]; then
+    /usr/bin/nvim
+  elif [ -f "${1}" ]; then
     if [ -w "${1}" ]; then
       /usr/bin/nvim "${1}"
     else
