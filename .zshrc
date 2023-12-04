@@ -49,6 +49,9 @@ alias pw="packwiz"
 alias fix-arch-keys="sudo pacman -Sy archlinux-keyring && sudo pacman -Su"
 alias cd="z"
 
+# options
+setopt LOCAL_OPTIONS NO_NOTIFY
+
 # Envrionment variables.
 export EDITOR="/usr/bin/nvim"
 
@@ -57,9 +60,8 @@ eval $(thefuck --alias)
 
 # Commands to run at startup.
 clear
-neofetch
-echo "Updating dotfiles..."
-( cd ~ ; git pull )
+hayabusa
+( cd ~ ; git pull > /dev/null ) &
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/path.zsh.inc' ]; then . '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/path.zsh.inc'; fi
