@@ -15,6 +15,7 @@
 !.config/btop/btop.conf
 !.config/neofetch**
 !.config/starship.toml
+!.config/nvim**
 !.zshrc
 !.zshfunctions
 !.ssh/
