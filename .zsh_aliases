@@ -1,0 +1,30 @@
+#!/bin/zsh
+0=${${(M)${0::=${(%):-%x}}:#/*}:-$PWD/$0}
+# Aliases, used to simplify commands and make them easier to remember.
+
+## Network related aliases.
+alias ipconfig="ip addr"
+alias iwconfig="ip addr"
+
+## GUI/WM/DE related aliases.
+alias which_window="xprop"               # X11, gets window information.
+
+## Filesystem related aliases.
+alias ls="exa"                           # Faster `ls` with colors.
+alias l="exa --long"                     # Prints single lines, more details.
+alias la="exa --long -a"                 # `l` but includes hidden files.
+alias cp="xcp"                           # A better `cp`, shows progress.
+
+## File interaction related aliases.
+alias img="viu"                            # Shows images in capable terminals.
+alias hex="hexyl"                          # Hex viewer.
+alias cat="bat --style=full --pager=never" # Pretty `cat`, styling and colors.
+alias bat="bat --pager=never -p"           # Simple `cat` with colors.
+
+## Convenience/UX related aliases.
+alias q="exit"                           # Quick exit.
+alias wiki="wiki-tui"                    # Wikipedia TUI.
+alias cd="z"                             # sets cd to use zoxide.
+
+## Misc. aliases.
+alias calc="eva"                         # CLI calculator.

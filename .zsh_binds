@@ -1,0 +1,18 @@
+#!/bin/zsh
+0=${${(M)${0::=${(%):-%x}}:#/*}:-$PWD/$0}
+# Keybindings for zsh, used to make the terminal UX decent.
+
+## History
+bindkey "^[[A"      up-line-or-beginning-search   # Up arrow
+bindkey "^[[B"      down-line-or-beginning-search # Down arrow
+
+## Movement/Editing
+bindkey "^[[H"      beginning-of-line             # Home
+bindkey "^[[F"      end-of-line                   # End
+bindkey "^[[3~"     delete-char                   # Delete
+bindkey "^[[1;5D"   backward-word                 # Ctrl + Left arrow
+bindkey "^[[1;5C"   forward-word                  # Ctrl + Right arrow
+bindkey "^U"        kill-whole-line               # Ctrl + U
+bindkey "^[[Z"      reverse-menu-complete         # Shift + Tab
+bindkey "^[^M"      self-insert-unmeta            # Alt + Enter
+bindkey "^_"        run-and-page                  # Ctrl + / (Ctrl + Enter)

@@ -1,0 +1,111 @@
+#!/bin/zsh
+0=${${(M)${0::=${(%):-%x}}:#/*}:-$PWD/$0}
+# ZSH Functions, used for defining functions that are used in the shell, \
+# usually for user convenience.
+
+## A function to try to guess the terminal emulator.
+which_term(){
+    term=$(ps -p "$(ps -p $$ -o ppid=)" -o args=);
+    found=0;
+    case $term in
+        *gnome-terminal*)
+            found=1
+            echo "gnome-terminal"
+            ;;
+        *lxterminal*)
+            found=1
+            echo "lxterminal"
+            ;;
+        rxvt*)
+            found=1
+            echo "rxvt"
+            ;;
+        ## Try and guess for any others
+        *)
+            for v in '-version' '--version' '-V' '-v'
+            do
+                $term "$v" &>/dev/null && eval "$term" $v && found=1 && break
+            done
+            ;;
+    esac
+    ## If none of the version arguments worked, try and get the 
+    ## package version
+    [ $found -eq 0 ] && echo "$term "    
+}
+
+## These two functions are for forcing myself to type out `nvim`.
+## I do this to build muscle memory. nvim hype.
+nano () {
+	cowsay "Try nvim instead"
+	print -z "nvim  $*"
+}
+vim () {
+	cowsay "Try nvim instead"
+	print -z "nvim  $*"
+}
+
+## This function makes the command provided as an argument run without being \
+## attached to the terminal.
+## Useful for running long running commands that you want to run after you \
+## close the terminal.
+lad () {
+    nohup "$@" >/dev/null 2>&1
+}
+sulad () {
+    nohup sudo "$@" >/dev/null 2>&1
+}
+
+## Quickly clears the screen.
+## Note: Also prints the banner.
+c () {
+    clear
+    banner
+}
+
+## Same as `c`, but does not print the banner.
+cc () {
+    clear
+}
+
+## Quickly clears the screen and starts a new shell.
+## Note: This keeps the env!
+s () {
+    clear
+    exec "$SHELL"
+}
+
+## Same as `s`, but clears the env.
+shown_env_warning=false
+ss () {
+    # This command is almost certainly unwanted, so warn the user.
+    # This clears *ALL* the env, including what is not set by the shell, but rather the TTY!
+    ## Variable definitions.
+    local reset="\e[0m"
+    local bold_red="\e[31;1m"
+    local warning_label="${bold_red}WARNING${reset}" # 7 chars
+    local separator=": " # 2 chars
+    (( offset = 7 + 2 ))
+    local offset_string=""
+    for (( i=0; i<offset; i++ )); do
+        offset_string+=" "
+    done
+    local warning_text="You almost certainly do not want to do this\!"
+    warning_text+="\n${offset_string}This will hideously break your shell\!"
+    warning_text+="\n${offset_string}I won't stop you next time!"
+    local warning="${warning_label}${separator}${warning_text}"
+    ## Check if we have warned the user, if not, warn them and return.
+    if [[ "$shown_env_warning" = false ]]; then
+        echo "$warning"
+        shown_env_warning=true
+        return 1
+    fi # ↓ We have already warned the user, so we can continue.
+    clear
+    # No need to set `shown_env_warning` to false, as its being cleared anyway.
+    exec -c "$SHELL" # -c clears the env.
+}
+
+## Fix pacman keyring issues.
+fix-arch-keys () {
+    sudo pacman -Sy archlinux-keyring
+    sudo pacman -Su
+}

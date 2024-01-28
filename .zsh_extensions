@@ -1,0 +1,21 @@
+#!/bin/zsh
+0=${${(M)${0::=${(%):-%x}}:#/*}:-$PWD/$0}
+# ZSH extensions, used for loading extensions to zsh.
+
+## Fuck support.
+eval "$(thefuck --alias)"
+
+## Zoxide.
+eval "$(zoxide init zsh)"
+
+## Autosuggestions.
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+## Syntax Highlighting.
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+## Package sugestions.
+source /usr/share/doc/pkgfile/command-not-found.zsh
+
+## Starship Prompt.
+eval "$(starship init zsh)"

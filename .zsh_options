@@ -1,0 +1,70 @@
+#!/bin/zsh
+0=${${(M)${0::=${(%):-%x}}:#/*}:-$PWD/$0}
+# ZSH options, used for setting general and miscellaneous settings and options.
+
+## Options.
+setopt LOCAL_OPTIONS           # Prevents options from infecting other shells.
+setopt NO_NOTIFY               # Jobs wait for fg to finish.
+setopt EXTENDED_GLOB           # Enable extended globbing.
+setopt TYPESET_SILENT          # Don't print typeset commands.
+setopt INTERACTIVE_COMMENTS    # Adds comment support.
+setopt AUTO_CD                 # cd by dir name.
+setopt AUTO_PUSHD              # pushd each dir change.
+setopt pushd_ignore_dups       # pushd ignores duplicates.
+setopt PUSHD_MINUS             # `-`=`prev`, `+`=`next`.
+setopt CHASE_LINKS             # Resolve symlinks.
+#setopt INC_APPEND_HISTORY     # See History section.
+#setopt EXTENDED_HISTORY       # See History section.
+#setopt HIST_EXPIRE_DUPS_FIRST # See History section.
+#setopt HIST_IGNORE_DUPS       # See History section.
+#setopt HIST_IGNORE_SPACE      # See History section.
+#setopt HIST_VERIFY            # See History section.
+#unsetopt MENU_COMPLETE        # See Completion section.
+#setopt AUTO_MENU              # See Completion section.
+#unsetopt FLOWCONTROL          # See Completion section.
+#setopt COMPLETE_IN_WORD       # See Completion section.
+#setopt ALWAYS_TO_END          # See Completion section.
+
+## History.
+export HISTFILE=${HOME}/.zsh_history # History file location.
+export HISTFILESIZE=500000000        # History file max size.
+export HISTSIZE=500000               # History max size.
+export SAVEHIST=100000               # History max size.
+setopt INC_APPEND_HISTORY            # Append to history file.
+export HISTTIMEFORMAT="[%F %T] "     # History timestamp format.
+setopt EXTENDED_HISTORY              # Save time/dur of command.
+export EDITOR="/usr/bin/nvim"        # Default editor.
+setopt HIST_EXPIRE_DUPS_FIRST        # Delete duplicates first.
+setopt HIST_IGNORE_DUPS              # Ignore duplicated commands history list
+setopt HIST_IGNORE_SPACE             # Ignore commands that start with space
+setopt HIST_VERIFY                   # !! prints to console.
+### History search enabling, i.e. <↑/↓> navigation.
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+
+## Completion.
+autoload -Uz compinit # Load the completion system.
+compinit              # Initialize the completion system.
+###↓Enables arrow key selection & Highlights selected tab menu completion.
+zstyle ':completion:*:*:*:*:*' menu select
+###↓If sudo magic is active, autocompletion will see privileged files.
+zstyle ':completion::complete:*' gain-privileges 1
+###↓Checks for new executables in $PATH live.
+zstyle ':completion:*' rehash true
+###↓`.` and `..` directories are autocompleteable.
+zstyle ':completion:*' special-dirs true
+###↓Disable named-directories autocompletion.
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+unsetopt MENU_COMPLETE  # <↓> Wait for second tab press to show menu.
+setopt AUTO_MENU        # <↑> The tandem of `MENU_COMPLETE`.
+unsetopt FLOW_CONTROL   # Disable output flow control.
+setopt COMPLETE_IN_WORD # Prevents jumping to end of completion.
+setopt ALWAYS_TO_END    # Jumps to end on finish.
+
+## Functions to widget bindings.
+zle -N run-and-page # For viewing output of commands in a pager.
+
+## Notes.
+### 

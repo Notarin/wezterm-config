@@ -23,6 +23,11 @@
 !.config/nvim/
 !.config/nvim/**
 !.zshrc
-!.zshfunctions
+!.zsh_internal_functions
+!.zsh_interactive_functions
+!.zsh_binds
+!.zsh_aliases
+!.zsh_options
+!.zsh_extensions
 !.ssh/
 !.ssh/authorized_keys

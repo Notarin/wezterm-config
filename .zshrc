@@ -1,73 +1,45 @@
-# Get operating system information.
+#!/bin/zsh
+0=${${(M)${0::=${(%):-%x}}:#/*}:-$PWD/$0}
+###############################################################################
+#  My zsh configuration file! This file is sourced by zsh when it starts up.  #
+#   This file sets the shell to: clear the screen, set aliases, functions,    #
+#               options, configurations, and loads extensions.                #
+#                                                                             #
+#     This is also the nexus of the configuration, as this file sources:      #
+#   `.zsh_internal_functions`, `.zsh_interactive_functions`, `.zsh_binds`,    #
+#          `.zsh_aliases`, `.zsh_options`, `.path`, and `.localrc`.           #
+###############################################################################
+
+## Clear the screen before starting source.
+clear
+
+## Get operating system information.
 source /etc/os-release
 
-# oh-my-zsh installation path.
-ZSH=/home/$USER/.oh-my-zsh/
-
-# https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="darkblood"
-
-# oh-my-zsh plugins.
-plugins=(zoxide zsh-autosuggestions zsh-syntax-highlighting)
-
-# Make required files/directories if they do not exist.
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
+## Make required files/directories if they do not exist.
+if [[ ! -f ${HOME}/.path ]]; then
+  touch "${HOME}"/.path
 fi
-if [[ ! -f ~/.path ]]; then
-  touch ~/.path
-fi
-if [[ ! -f ~/.localrc ]]; then
-  touch ~/.localrc
+if [[ ! -f "${HOME}"/.localrc ]]; then
+  touch "${HOME}"/.localrc
 fi
 
-# Sourcing oh-my-zsh, functions, and plugins.
-source $ZSH/oh-my-zsh.sh
-source ~/.zshfunctions
-source ~/.path
-source ~/.localrc
+## Sources/Imports.
+### Tracked/Universally sourced files.
+source "${HOME}"/.zsh_internal_functions    # Prerequisite internal functions.
+#### [zsh_internal_functions<↑>, zsh_interactive_functions<↓>]
+source "${HOME}"/.zsh_interactive_functions # User facing Functions.
+#### [zsh_internal_functions<↑>, zsh_binds<↓>]
+source "${HOME}"/.zsh_binds                 # Keybinds.
+source "${HOME}"/.zsh_aliases               # Aliases.
+#### [zsh_internal_functions<↑>, zsh_options<↓>]
+source "${HOME}"/.zsh_options               # General shell behavior options.
+source "${HOME}"/.zsh_extensions            # Extensions to zsh.
+### Untracked/System specific files.
+source "${HOME}"/.path                      # Path additions.
+source "${HOME}"/.localrc                   # Additional configuration.
 
-# alises.
-alias ipconfig="ip addr"
-alias iwconfig="ip addr"
-alias which_window="xprop"
-alias ls="exa"
-alias l="exa --long"
-alias la="exa --long -a"
-alias img="viu"
-alias hex="hexyl"
-alias cat="bat --style=full --pager=never"
-alias bat="bat --pager=never -p"
-alias calc="eva"
-alias cp="xcp"
-alias kssh="kitty +kitten ssh"
-alias c="clear && ( cd ~ ; source .zshrc )"
-alias q="exit"
-alias wiki="wiki-tui"
-alias pw="packwiz"
-alias fix-arch-keys="sudo pacman -Sy archlinux-keyring && sudo pacman -Su"
-alias cd="z"
 
-# options
-setopt LOCAL_OPTIONS NO_NOTIFY
-
-# Envrionment variables.
-export EDITOR="/usr/bin/nvim"
-
-# Fuck support
-eval $(thefuck --alias)
-
-# Commands to run at startup.
-clear
-hayabusa
-( cd ~ ; git pull > /dev/null ) &
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/path.zsh.inc' ]; then . '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/notarin/compute-archlinux-image-builder/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Starship Prompt
-eval "$(starship init zsh)"
+## Commands to run at startup.
+banner
+( git -C "$HOME" pull --ff-only > /dev/null ) &
