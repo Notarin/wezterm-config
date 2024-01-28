@@ -1,5 +1,5 @@
 local telescope = require('telescope.builtin')
-
+local file_browser = require('telescope').extensions.file_browser
 local wk = require("which-key")
 
 local refactor_function = {
@@ -20,8 +20,7 @@ local refactor_function = {
 
 wk.register({
 	["<leader>"] = {
-		-- e = { "<cmd>Telescope file_browser<cr>", "File Explorer" },
-		e = { require "telescope".extensions.file_browser.file_browser, "File Explorer" },
+		e = { file_browser.file_browser, "File Explorer" },
 		w = { "<cmd>bd<cr>", "Close Buffer" },
 		s = { "<cmd>w<cr>", "Save File" },
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
@@ -66,13 +65,19 @@ wk.register({
 	mode = "n",
 })
 
-wk.register({
-	["<leader>"] = {
-		r = refactor_function,
+wk.register(
+	{
+		["<leader>"] = {
+			r = refactor_function,
+		},
+		["/"] = {
+			"<cmd>'<,'>CommentToggle<cr>", "Toggle Comment"
+		},
+	},
+	{
+		mode = "v",
 	}
-}, {
-	mode = "v",
-})
+)
 
 vim.keymap.set("t", "<esc>", require('FTerm').close)
 vim.keymap.set("n", "<A-q>", "<cmd>lua vim.lsp.buf.hover()<cr>")
@@ -114,8 +119,3 @@ vim.api.nvim_set_keymap('i', '<S-Up>', '<Esc>v<Up>', { noremap = true, silent = 
 vim.api.nvim_set_keymap('i', '<S-Down>', '<Esc>v<Down>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<S-Left>', '<Esc>v<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<S-Right>', '<Esc>v<Right>', { noremap = true, silent = true })
-
-
-vim.keymap.set("n", "<C-s>", require("auto-session.session-lens").search_session, {
-	noremap = true,
-})

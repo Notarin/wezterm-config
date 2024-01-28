@@ -4,7 +4,7 @@ vim.g.localleader = "\\"
 
 -- IMPORTS
 require('vars')
-require('plugins')
 require('options')
+require('plugins')
 require('keys')
 require('theme')

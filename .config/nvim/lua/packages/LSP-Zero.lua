@@ -4,33 +4,6 @@ return {
 		dependencies = {
 			{
 				"neovim/nvim-lspconfig",
-				config = function()
-					local lsp = require 'lspconfig'
-					local on_attach = function(client)
-						require 'completion'.on_attach(client)
-					end
-					lsp.rust_analyzer.setup({
-						on_attach = on_attach,
-						settings = {
-							["rust-analyzer"] = {
-								imports = {
-									granularity = {
-										group = "module",
-									},
-									prefix = "self",
-								},
-								cargo = {
-									buildScripts = {
-										enable = true,
-									},
-								},
-								procMacro = {
-									enable = true
-								},
-							}
-						}
-					})
-				end,
 			},
 			{
 				"williamboman/mason.nvim",
@@ -75,26 +48,64 @@ return {
 						mapping = {
 							['<CR>'] = cmp.mapping.confirm({ select = false }),
 							['<Right>'] = cmp.mapping.confirm({ select = false }),
-							['<Tab>'] = cmp.mapping.confirm({ select = false })
-							-- ['<esc>'] = cmp.mapping.abort(),
+							['<Tab>'] = cmp.mapping.confirm({ select = false }),
+							['<Down>'] = cmp.mapping.select_next_item(),
+							['<Up>'] = cmp.mapping.select_prev_item(),
+							['<Esc>'] = cmp.mapping.abort(),
 						}
 					})
-					local cmp_select = { behavior = cmp.SelectBehavior.Select }
 				end,
 			},
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "L3MON4D3/LuaSnip" }
 		},
 		config = function()
-			local lsp = require('lsp-zero')
-			lsp.preset('recommended')
-			lsp.setup()
-			lsp.on_attach(
+			local lsp_zero = require('lsp-zero')
+			lsp_zero.extend_lspconfig()
+			lsp_zero.on_attach(
 				function(_, bufnr)
-					lsp.default_keymaps({ buffer = bufnr })
-					lsp.buffer_autoformat()
+					lsp_zero.default_keymaps({ buffer = bufnr })
+					lsp_zero.buffer_autoformat()
 				end
 			)
+
+			local lsp = require('lspconfig')
+			local on_attach = function(client)
+				require 'completion'.on_attach(client)
+			end
+			require('mason').setup({})
+			require('mason-lspconfig').setup({
+				ensure_installed = {},
+				handlers = {
+					lsp_zero.default_setup,
+					rust_analyzer = function()
+						lsp.rust_analyzer.setup({
+							on_attach = on_attach,
+							settings = {
+								["rust-analyzer"] = {
+									imports = {
+										granularity = {
+											group = "module",
+										},
+										prefix = "self",
+									},
+									cargo = {
+										buildScripts = {
+											enable = true,
+										},
+									},
+									procMacro = {
+										enable = true
+									},
+								}
+							}
+						})
+					end,
+				}
+			})
 		end,
+	},
+	{
+		'onsails/lspkind.nvim',
 	},
 }
