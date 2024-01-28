@@ -34,3 +34,13 @@ install-hayabusa () {
     https://api.github.com/repos/notarin/hayabusa/releases/latest | grep \
     browser_download_url | cut -d\" -f4 | grep install-linux.sh)" | sudo sh
 }
+
+remove-flags() {
+    local flagless_args
+    for arg in "$@"; do
+        if [[ "${arg}" != -* ]]; then
+            flagless_args+=("${arg}")
+        fi
+    done
+    echo "${flagless_args[@]}"
+}

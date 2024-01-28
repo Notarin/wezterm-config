@@ -109,3 +109,24 @@ fix-arch-keys () {
     sudo pacman -Sy archlinux-keyring
     sudo pacman -Su
 }
+
+rm () {
+    # Print an are you sure message.
+    # "Are you sure you want to delete $*? [Press ENTER to continue]"
+    # Block until user presses enter.
+    # user can press ctrl-c to cancel.
+    # If user presses enter, run `rm` with the arguments provided.
+    echo "[rm] \$*: ${*}"
+    local relative="$(remove-flags ${*})"
+    echo "[rm] relative: ${raw}"
+    local paths="$(realpath ${relative})"
+    echo "[rm] paths: ${paths}"
+    echo "Are you sure you want to delete the following files?"
+    echo "$paths"
+    echo -n "[Press ENTER to continue]"
+    read -k
+    if ! [[ $? -eq 0 ]]; then
+        return $?
+    fi
+    /usr/bin/rm "$*[@]"
+}
