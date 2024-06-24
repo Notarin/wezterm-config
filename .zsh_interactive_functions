@@ -130,3 +130,7 @@ rm () {
     fi
     /usr/bin/rm "$*[@]"
 }
+
+find () {
+    /usr/bin/find $(pwd) -name $* 2>&1 | grep -v "Permission denied"
+}
