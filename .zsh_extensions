@@ -8,6 +8,9 @@ eval "$(thefuck --alias)"
 ## Zoxide.
 eval "$(zoxide init zsh)"
 
+## ssh-agent
+eval "$(ssh-agent)"
+
 ## Autosuggestions.
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
