@@ -23,7 +23,7 @@ wk.register({
 		e = { file_browser.file_browser, "File Explorer" },
 		w = { "<cmd>bd<cr>", "Close Buffer" },
 		s = { "<cmd>w<cr>", "Save File" },
-		f = { "<cmd>Telescope find_files<cr>", "Find File" },
+		f = { "<cmd>Telescope frecency<cr>", "Smart Files" },
 		b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
 		r = refactor_function,
 		m = {
@@ -119,3 +119,5 @@ vim.api.nvim_set_keymap('i', '<S-Up>', '<Esc>v<Up>', { noremap = true, silent = 
 vim.api.nvim_set_keymap('i', '<S-Down>', '<Esc>v<Down>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<S-Left>', '<Esc>v<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<S-Right>', '<Esc>v<Right>', { noremap = true, silent = true })
+
+vim.api.nvim_create_user_command('Q', 'q', {})
