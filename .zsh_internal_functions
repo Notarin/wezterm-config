@@ -29,12 +29,14 @@ banner () {
     hayabusa
 }
 
+## Install hayabusa.
 install-hayabusa () {
     curl -sL "$(curl -s \
     https://api.github.com/repos/notarin/hayabusa/releases/latest | grep \
     browser_download_url | cut -d\" -f4 | grep install-linux.sh)" | sudo sh
 }
 
+## Remove flags from a set of arguments.
 remove-flags() {
     local flagless_args
     for arg in "$@"; do
@@ -43,4 +45,12 @@ remove-flags() {
         fi
     done
     echo "${flagless_args[@]}"
+}
+
+## Takes `STDIN` and sets it to a variable.
+var () {
+    local stdin="$(cat)"
+    echo "$stdin" ### DEBUG
+    local varname="${1}"
+    echo "$varname" ### DEBUG
 }
