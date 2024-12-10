@@ -21,6 +21,7 @@ alias img="viu"                            # Shows images in capable terminals.
 alias hex="hexyl"                          # Hex viewer.
 alias cat="bat --style=full --pager=never" # Pretty `cat`, styling and colors.
 alias bat="bat --pager=never -p"           # Simple `cat` with colors.
+alias less="less -R"                       # Color support for `less`.
 
 ## Convenience/UX related aliases.
 alias q="exit"        # Quick exit.
