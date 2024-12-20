@@ -43,4 +43,6 @@ source "${HOME}"/.localrc                   # Additional configuration.
 ## Commands to run at startup.
 ### Show Hayabusa Banner.
 banner
+### Update dotfiles, if not disabled.
+[[ -v SKIP_UPDATE ]] && \
 ( git -C "$HOME" pull --ff-only > /dev/null ) &
