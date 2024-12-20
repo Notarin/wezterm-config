@@ -29,6 +29,8 @@
 !.config/helix/**
 !.config/swaync/
 !.config/swaync/**
+!.config/wofi/
+!.config/wofi/**
 !.zshrc
 !.zsh_internal_functions
 !.zsh_interactive_functions
