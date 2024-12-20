@@ -22,6 +22,8 @@
 !.config/starship.toml
 !.config/nvim/
 !.config/nvim/**
+!.config/nushell/
+!.config/nushell/**
 !.zshrc
 !.zsh_internal_functions
 !.zsh_interactive_functions
