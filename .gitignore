@@ -31,6 +31,8 @@
 !.config/swaync/**
 !.config/wofi/
 !.config/wofi/**
+!.config/zellij/
+!.config/zellij/**
 !.zshrc
 !.zsh_internal_functions
 !.zsh_interactive_functions
