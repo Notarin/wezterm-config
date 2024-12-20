@@ -63,6 +63,17 @@ unsetopt FLOW_CONTROL   # Disable output flow control.
 setopt COMPLETE_IN_WORD # Prevents jumping to end of completion.
 setopt ALWAYS_TO_END    # Jumps to end on finish.
 
+## XDG related options.
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_STATE_HOME="$HOME"/.local/state
+export XDG_CACHE_HOME="$HOME"/.cache
+
+## XDG related options.
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
+
 ## Functions to widget bindings.
 zle -N run-and-page # For viewing output of commands in a pager.
 
