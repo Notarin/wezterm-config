@@ -25,6 +25,8 @@
 !.config/nushell/
 !.config/nushell/**
 .config/nushell/history.txt
+!.config/helix/
+!.config/helix/**
 !.zshrc
 !.zsh_internal_functions
 !.zsh_interactive_functions
