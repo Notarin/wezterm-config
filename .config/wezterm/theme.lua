@@ -2,7 +2,6 @@ local wezterm = require 'wezterm'
 
 return function(config)
     local rose_pine = wezterm.color.get_builtin_schemes()['rose-pine']
-    print(wezterm.color.get_builtin_schemes()['rose-pine'])
     rose_pine.selection_bg = '#6e6a86'
     rose_pine.tab_bar = {
         background = '#191724',
