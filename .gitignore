@@ -36,6 +36,8 @@
 !.config/wezterm/
 !.config/wezterm/**
 .config/wezterm/trace.log
+!.config/hypr/
+!.config/hypr/**
 !.zshrc
 !.zsh_internal_functions
 !.zsh_interactive_functions
