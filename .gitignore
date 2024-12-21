@@ -33,6 +33,9 @@
 !.config/wofi/**
 !.config/zellij/
 !.config/zellij/**
+!.config/wezterm/
+!.config/wezterm/**
+.config/wezterm/trace.log
 !.zshrc
 !.zsh_internal_functions
 !.zsh_interactive_functions
