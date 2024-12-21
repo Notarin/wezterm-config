@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 
-local function config(config)
+return function (config)
     config.enable_tab_bar = false
     config.window_background_opacity = 1.0
     config.window_padding = {
@@ -10,5 +10,3 @@ local function config(config)
         bottom = '0cell',
     }
 end
-
-return config

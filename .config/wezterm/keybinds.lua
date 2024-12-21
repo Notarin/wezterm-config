@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 
-local function config(config)
+return function(config)
     config.keys = {
         {
             key = "c",
@@ -36,5 +36,3 @@ local function config(config)
         },
     }
 end
-
-return config

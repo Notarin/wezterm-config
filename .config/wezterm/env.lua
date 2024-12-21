@@ -1,9 +1,7 @@
 local wezterm = require 'wezterm'
 
-local function config(config)
+return function(config)
     config.set_environment_variables = {
         LANG = "en_US.UTF-8",
     }
 end
-
-return config

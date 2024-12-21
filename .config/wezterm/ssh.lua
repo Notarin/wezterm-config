@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 
-local function config(config)
+return function(config)
     config.ssh_domains = {
         {
             name = 'localhost',
@@ -9,5 +9,3 @@ local function config(config)
         },
     }
 end
-
-return config
