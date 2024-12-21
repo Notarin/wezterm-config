@@ -13,6 +13,7 @@ function main()
 	require('options')(config)
 	require('keybinds')(config)
 	require('ssh')(config)
+	require('domains')(config)
 	return config
 end
 
