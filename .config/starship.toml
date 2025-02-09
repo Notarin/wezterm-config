@@ -1,7 +1,0 @@
-add_newline = false
-
-[hostname]
-ssh_symbol = "📡"
-
-[shell]
-disabled = false
